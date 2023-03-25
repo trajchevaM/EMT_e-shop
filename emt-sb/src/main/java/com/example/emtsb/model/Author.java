@@ -1,9 +1,20 @@
 package com.example.emtsb.model;
 
+import jakarta.persistence.*;
+import java.util.List;
+
+
 public class Author {
-    Long id;
-    String name;
-    String surname;
-    Country country;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private String surname;
+
+    @ManyToOne
+    private Country country;
+
+    @OneToMany
+    private List<Book> books;
 
 }
