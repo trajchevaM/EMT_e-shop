@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
     public List<Book> findAll();
+
+    void deleteByName(String name);
 }
