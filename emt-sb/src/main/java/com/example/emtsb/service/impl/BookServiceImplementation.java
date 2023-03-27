@@ -59,6 +59,8 @@ public class BookServiceImplementation implements BookService {
 
         Author author = authorRepository.findById(bookDto.getAuthorId())
                 .orElseThrow();
+        if(bookDto.getAvailableCopies()<0)
+            throw new RuntimeException();
 
         book.setName(bookDto.getName());
         book.setCategory(bookDto.getCategory());
@@ -79,7 +81,14 @@ public class BookServiceImplementation implements BookService {
         Book book = this.bookRepository.findById(id)
                 .orElseThrow();
 
-        book.setAvailableCopies(book.getAvailableCopies()-1);
+        int newAvailable = book.getAvailableCopies()-1;
+        if(newAvailable<0){
+            throw new RuntimeException();
+        }
+
+
+        book.setAvailableCopies(newAvailable);
+        this.bookRepository.save(book);
 
         return Optional.of(book);
     }

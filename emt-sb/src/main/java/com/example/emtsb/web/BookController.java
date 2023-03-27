@@ -19,11 +19,13 @@ public class BookController {
         this.bookService = bookService;
     }
 
+    //ok
     @GetMapping
     public List<Book> findAll() {
         return this.bookService.findAll();
     }
 
+    //ok
     @GetMapping("/{id}")
     public ResponseEntity<Book> findById(@PathVariable Long id) {
         return this.bookService.findById(id)
@@ -31,6 +33,7 @@ public class BookController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    //ok
     @PostMapping("/add")
     public ResponseEntity<Book> save(@RequestBody BookDto bookDto) {
         return this.bookService.save(bookDto)
@@ -38,13 +41,15 @@ public class BookController {
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
-    @PutMapping("/edit")
+    //ok
+    @PutMapping("/edit/{id}")
     public ResponseEntity<Book> save(@PathVariable Long id, @RequestBody BookDto bookDto) {
         return this.bookService.edit(id, bookDto)
                 .map(book -> ResponseEntity.ok().body(book))
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
+    //ok
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Book> deleteById(@PathVariable Long id) {
         this.bookService.deleteById(id);
@@ -52,7 +57,8 @@ public class BookController {
         return ResponseEntity.badRequest().build();
     }
 
-    @PatchMapping("/{id}/mark-as-taken")
+    //ok
+    @PatchMapping("/mark-as-taken/{id}")
     public ResponseEntity<Book> markAsTaken(@PathVariable Long id) {
         return this.bookService.markAsTaken(id)
                 .map(book -> ResponseEntity.ok().body(book))
