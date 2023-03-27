@@ -50,4 +50,35 @@ public class BookServiceImplementation implements BookService {
         bookRepository.save(book);
         return Optional.of(book);
     }
+
+    @Override
+    public Optional<Book> edit(Long id, BookDto bookDto) {
+        Book book = this.bookRepository.findById(id).orElseThrow(); //da se dodade exception
+
+        Author author = authorRepository.findById(bookDto.getAuthorId())
+                .orElseThrow();
+
+        book.setName(bookDto.getName());
+        book.setCategory(bookDto.getCategory());
+        book.setAuthor(author);
+        book.setAvailableCopies(bookDto.getAvailableCopies());
+
+        this.bookRepository.save(book);
+        return Optional.of(book);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        this.bookRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Book> markAsTaken(Long id) {
+        Book book = this.bookRepository.findById(id)
+                .orElseThrow();
+
+        book.setAvailableCopies(book.getAvailableCopies()-1);
+
+        return Optional.of(book);
+    }
 }

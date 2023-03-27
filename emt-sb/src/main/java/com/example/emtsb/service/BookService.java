@@ -15,4 +15,10 @@ public interface BookService {
      Optional<Book> findById(Long id);
 
      Optional<Book> save(BookDto bookDto);
+
+     Optional<Book> edit(Long id, BookDto bookDto);
+
+     void deleteById(Long id);
+
+     Optional<Book> markAsTaken(Long id);
 }

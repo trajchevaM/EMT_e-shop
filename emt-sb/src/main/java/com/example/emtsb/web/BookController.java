@@ -35,12 +35,27 @@ public class BookController {
                 .map(book -> ResponseEntity.ok().body(book))
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
+
+    @PutMapping("/edit")
+    public ResponseEntity<Book> save(@PathVariable Long id, @RequestBody BookDto bookDto) {
+        return this.bookService.edit(id, bookDto)
+                .map(book -> ResponseEntity.ok().body(book))
+                .orElseGet(() -> ResponseEntity.badRequest().build());
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity deleteById(@PathVariable Long id) {
+        this.bookService.deleteById(id);
+        if(this.bookService.findById(id).isEmpty()) return ResponseEntity.ok().build();
+        return ResponseEntity.badRequest().build();
+    }
+
+    @PatchMapping("/{id}/mark-as-taken")
+    public ResponseEntity<Book> markAsTaken(@PathVariable Long id) {
+        return this.bookService.markAsTaken(id)
+                .map(book -> ResponseEntity.ok().body(book))
+                .orElseGet(() -> ResponseEntity.badRequest().build());
+    }
+
     //get za paginiacija
-    //put edit
-    //patch za markAsTaken
-    //delete
-
-
-
-
 }
