@@ -1,11 +1,13 @@
 package com.example.emtsb.web;
 
 import com.example.emtsb.model.Book;
-import com.example.emtsb.model.dto.BookDto;
+import com.example.emtsb.model.DTO.BookDto;
 import com.example.emtsb.service.BookService;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 @RestController
@@ -44,7 +46,7 @@ public class BookController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity deleteById(@PathVariable Long id) {
+    public ResponseEntity<Book> deleteById(@PathVariable Long id) {
         this.bookService.deleteById(id);
         if(this.bookService.findById(id).isEmpty()) return ResponseEntity.ok().build();
         return ResponseEntity.badRequest().build();
@@ -58,4 +60,8 @@ public class BookController {
     }
 
     //get za paginiacija
+    @GetMapping("/pagination")
+    public Page<Book> findAllWithPagination(Pageable pageable){
+        return this.bookService.findAllWithPagination(pageable);
+    }
 }

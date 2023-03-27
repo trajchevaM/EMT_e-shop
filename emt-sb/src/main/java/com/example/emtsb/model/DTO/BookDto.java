@@ -1,10 +1,8 @@
-package com.example.emtsb.model.dto;
+package com.example.emtsb.model.DTO;
 
-import com.example.emtsb.model.Author;
 import com.example.emtsb.model.ENUM.Category;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 @Data

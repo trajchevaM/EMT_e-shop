@@ -2,12 +2,14 @@ package com.example.emtsb.service.impl;
 
 import com.example.emtsb.model.Book;
 import com.example.emtsb.model.Author;
-import com.example.emtsb.model.dto.BookDto;
+import com.example.emtsb.model.DTO.BookDto;
 import com.example.emtsb.repository.AuthorRepository;
 import com.example.emtsb.repository.BookRepository;
 import com.example.emtsb.service.BookService;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Optional;
 
@@ -80,5 +82,11 @@ public class BookServiceImplementation implements BookService {
         book.setAvailableCopies(book.getAvailableCopies()-1);
 
         return Optional.of(book);
+    }
+
+    //neshto ne e kako shto treba
+    @Override
+    public Page<Book> findAllWithPagination(Pageable pageable) {
+        return this.bookRepository.findAll((org.springframework.data.domain.Pageable) pageable);
     }
 }
