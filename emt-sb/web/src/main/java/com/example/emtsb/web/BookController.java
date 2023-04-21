@@ -11,6 +11,7 @@ import java.awt.print.Pageable;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/books")
 public class BookController {
     private final BookService bookService;

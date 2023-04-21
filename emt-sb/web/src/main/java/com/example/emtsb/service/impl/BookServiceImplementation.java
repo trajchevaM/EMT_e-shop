@@ -3,6 +3,7 @@ package com.example.emtsb.service.impl;
 import com.example.emtsb.model.Book;
 import com.example.emtsb.model.Author;
 import com.example.emtsb.model.DTO.BookDto;
+import com.example.emtsb.model.ENUM.Category;
 import com.example.emtsb.repository.AuthorRepository;
 import com.example.emtsb.repository.BookRepository;
 import com.example.emtsb.service.BookService;
@@ -26,6 +27,12 @@ public class BookServiceImplementation implements BookService {
     @Override
     public Book getBookById(long id) {
         return bookRepository.getReferenceById(id);
+    }
+
+    @Override
+    public List<Book> findAllByCategory(String categoryName) {
+        Category category = Category.valueOf(categoryName);
+        return this.bookRepository.findAllByCategory(category);
     }
 
     @Override

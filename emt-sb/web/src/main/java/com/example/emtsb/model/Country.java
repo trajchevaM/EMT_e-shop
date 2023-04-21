@@ -16,4 +16,9 @@ public class Country {
     private String continent;
     @OneToMany
     private List<Author> authors;
+
+    public Country(String name, String continent) {
+        this.name = name;
+        this.continent = continent;
+    }
 }

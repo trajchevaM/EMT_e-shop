@@ -11,6 +11,8 @@ import java.util.Optional;
 
 public interface BookService {
      Book getBookById(long id);
+
+     List<Book> findAllByCategory(String categoryName);
      List<Book> findAll();
      void add(Book book);
 
