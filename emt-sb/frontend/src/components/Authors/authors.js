@@ -9,6 +9,7 @@ const authors = (props) => {
                         <thead>
                             <tr>
                                 <th scope={"col"}>Name</th>
+                                <th scope={"col"}>Surname</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -16,6 +17,7 @@ const authors = (props) => {
                             return (
                                 <tr>
                                     <td>{author.name}</td>
+                                    <td>{author.surname}</td>
                                 </tr>
                             )
                         })}
