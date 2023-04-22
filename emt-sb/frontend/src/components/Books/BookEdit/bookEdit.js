@@ -1,8 +1,7 @@
 import React from "react";
 import {useNavigate} from 'react-router-dom';
 
-const BookAdd = (props) => {
-
+const BookEdit = (props) => {
     const navigate = useNavigate();
     const[formData, updateFormData] = React.useState({
         name: "",
@@ -20,12 +19,12 @@ const BookAdd = (props) => {
 
     const onFormSubmit = (e) => {
         e.preventDefault();
-        const name = formData.name;
-        const category = formData.category;
-        const authorId = formData.authorId;
-        const availableCopies = formData.availableCopies;
+        const name = formData.name !== "" ? formData.name : props.book.name;
+        const category = formData.category !== "" ? formData.category : props.book.category;
+        const authorId = formData.authorId !== 0 ? formData.authorId : props.book.authorId;
+        const availableCopies = formData.availableCopies !== 0 ? formData.availableCopies : props.book
 
-        props.onAddBook(name,category,authorId,availableCopies);
+        props.onEditBook(props.book.id, name,category,authorId,availableCopies);
         navigate("/books", {replace: true});
     }
 
@@ -40,25 +39,33 @@ const BookAdd = (props) => {
                                className="form-control"
                                id="name"
                                name="name"
-                               required
-                               placeholder="Enter book name"
+                               placeholder={props.book.name}
                                onChange={handleChange}
                         />
                     </div>
                     <div className="form-group">
                         <label>Category</label>
                         <select name="category" className="form-control" onChange={handleChange}>
-                            {props.categories.map((category) =>
-                                <option value={category}>{category}</option>
-                            )}
+                            {props.categories.map((term) => {
+                                if(props.book.category !== undefined &&
+                                    props.book.category === term)
+                                    return <option selected={props.book.category} value={term}>{term}</option>
+                                else return <option value={term}>{term}</option>
+                            })}
+
                         </select>
                     </div>
                     <div className="form-group">
                         <label>Author</label>
                         <select name="authorId" className="form-control" onChange={handleChange}>
-                            {props.authors.map((author) =>
-                                <option value={author.id}>{author.name} {author.surname}</option>
-                            )}
+                            {props.authors.map((author) => {
+                                if (props.book.author !== undefined && props.book.author.id === author.id) {
+                                    return <option selected={props.book.author.id}
+                                                   value={author.id}>{author.name} {author.surname}</option>
+                                } else {
+                                    return <option value={author.id}>{author.name} {author.surname}</option>
+                                }
+                            })}
                         </select>
                     </div>
                     <div className="form-group">
@@ -67,8 +74,7 @@ const BookAdd = (props) => {
                                className="form-control"
                                id="availableCopies"
                                name="availableCopies"
-                               placeholder="Enter available copies"
-                               required
+                               placeholder={props.book.availableCopies}
                                onChange={handleChange}
                         />
                     </div>
@@ -79,4 +85,4 @@ const BookAdd = (props) => {
     )
 }
 
-export default BookAdd;
+export default BookEdit;
