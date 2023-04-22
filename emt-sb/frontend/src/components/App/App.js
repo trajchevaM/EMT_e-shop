@@ -6,6 +6,7 @@ import Authors from "../Authors/authors";
 import EShopService from "../../repository/eshopRepository";
 import Categories from "../Categories/categories";
 import Books from "../Books/BookList/books";
+import BookAdd from "../Books/BookAdd/bookAdd";
 
 class App extends Component {
     constructor(props) {
@@ -20,11 +21,11 @@ class App extends Component {
         return(
             <BrowserRouter>
                 <Routes>
-                            <Route path={"/authors"} element={<Authors authors={this.state.authors}/>}/>
-                            <Route path={"/categories"} element={ <Categories categories={this.state.categories}/>}/>
-                            <Route path={"/books"} element={<Books books={this.state.books}/>}/>
-                            <Route path={"/"} element={<Books books={this.state.books}/>}/>
-
+                    <Route path={"/authors"} element={<Authors authors={this.state.authors}/>}/>
+                    <Route path={"/categories"} element={ <Categories categories={this.state.categories}/>}/>
+                    <Route path={"/books/add"} element={<BookAdd categories={this.state.categories} authors={this.state.authors} onAddBook={this.addProduct}/>}/>
+                    <Route path={"/books"} element={<Books books={this.state.books} onDelete={this.deleteBook}/>}/>
+                    <Route path={"/"} element={<Books books={this.state.books} onDelete={this.deleteBook}/>}/>
                 </Routes>
             </BrowserRouter>
         );
@@ -62,6 +63,21 @@ class App extends Component {
                 })
             });
     }
+
+    deleteBook = (id) => {
+        EShopService.deleteBook(id)
+            .then(() => {
+                this.loadBooks();
+            });
+    }
+
+    addProduct = (name, category, authorId, availableCopies) => {
+        EShopService.addBook(name, category, authorId, availableCopies)
+            .then(() => {
+                this.loadBooks();
+            });
+    }
+
 }
 
 export default App;

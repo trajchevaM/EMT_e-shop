@@ -9,7 +9,19 @@ const EShopService = {
     },
     fetchBooks: () => {
         return axios.get("/books")
+    },
+    deleteBook: (id) => {
+        return axios.delete(`/books/delete/${id}`);
+    },
+    addBook: (name, category, authorId, availableCopies) => {
+        return axios.post("/books/add", {
+            "name": name,
+            "category": category,
+            "authorId": authorId,
+            "availableCopies": availableCopies
+        })
     }
+
 }
 
 export default EShopService;
