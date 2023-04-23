@@ -3,9 +3,8 @@ package com.example.emtsb.service;
 import com.example.emtsb.model.Book;
 import com.example.emtsb.model.DTO.BookDto;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Pageable;
 
-import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,5 +25,5 @@ public interface BookService {
 
      Optional<Book> markAsTaken(Long id);
 
-     Page<Book> findAllWithPagination(Pageable pageable);
+     Page<Book> findAll(Pageable pageable);
 }

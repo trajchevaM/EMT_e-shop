@@ -8,9 +8,9 @@ import com.example.emtsb.repository.AuthorRepository;
 import com.example.emtsb.repository.BookRepository;
 import com.example.emtsb.service.BookService;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Optional;
 
@@ -100,9 +100,10 @@ public class BookServiceImplementation implements BookService {
         return Optional.of(book);
     }
 
-    //neshto ne e kako shto treba
     @Override
-    public Page<Book> findAllWithPagination(Pageable pageable) {
-        return this.bookRepository.findAll((org.springframework.data.domain.Pageable) pageable);
+    public Page<Book> findAll(Pageable pageable) {
+        return this.bookRepository.findAll(pageable);
     }
+
+
 }

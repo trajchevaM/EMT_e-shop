@@ -7,7 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
-import java.awt.print.Pageable;
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 @RestController
@@ -66,9 +66,8 @@ public class BookController {
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
-    //get za paginiacija
     @GetMapping("/pagination")
-    public Page<Book> findAllWithPagination(Pageable pageable){
-        return this.bookService.findAllWithPagination(pageable);
+    public List<Book> findAllWithPagination(Pageable pageable){
+        return this.bookService.findAll(pageable).getContent();
     }
 }
