@@ -10,6 +10,8 @@ const authors = (props) => {
                             <tr>
                                 <th scope={"col"}>Name</th>
                                 <th scope={"col"}>Surname</th>
+                                <th scope={"col"}>Country</th>
+                                <th scope={"col"}>Continent</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -18,6 +20,8 @@ const authors = (props) => {
                                 <tr>
                                     <td>{author.name}</td>
                                     <td>{author.surname}</td>
+                                    <td>{author.country.name}</td>
+                                    <td>{author.country.continent}</td>
                                 </tr>
                             )
                         })}

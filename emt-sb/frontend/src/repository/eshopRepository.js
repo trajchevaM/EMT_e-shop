@@ -31,6 +31,9 @@ const EShopService = {
     },
     getBook: (id) => {
         return axios.get(`/books/${id}`);
+    },
+    markAsTaken: (id) => {
+        return axios.patch(`/books/mark-as-taken/${id}`);
     }
 }
 

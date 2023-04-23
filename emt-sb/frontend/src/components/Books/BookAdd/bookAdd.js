@@ -31,49 +31,51 @@ const BookAdd = (props) => {
 
 
     return (
-        <div className="row mt-5">
-            <div className="col-md-5">
-                <form onSubmit={onFormSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="name">Book name</label>
-                        <input type="text"
-                               className="form-control"
-                               id="name"
-                               name="name"
-                               required
-                               placeholder="Enter book name"
-                               onChange={handleChange}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Category</label>
-                        <select name="category" className="form-control" onChange={handleChange}>
-                            {props.categories.map((category) =>
-                                <option value={category}>{category}</option>
-                            )}
-                        </select>
-                    </div>
-                    <div className="form-group">
-                        <label>Author</label>
-                        <select name="authorId" className="form-control" onChange={handleChange}>
-                            {props.authors.map((author) =>
-                                <option value={author.id}>{author.name} {author.surname}</option>
-                            )}
-                        </select>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="quantity">Available copies</label>
-                        <input type="text"
-                               className="form-control"
-                               id="availableCopies"
-                               name="availableCopies"
-                               placeholder="Enter available copies"
-                               required
-                               onChange={handleChange}
-                        />
-                    </div>
-                    <button id="submit" type="submit" className="btn btn-primary">Submit</button>
-                </form>
+        <div className={"container"}>
+            <div className="row mt-5">
+                <div className="col-md-5">
+                    <form onSubmit={onFormSubmit}>
+                        <div className="form-group">
+                            <label htmlFor="name">Book name</label>
+                            <input type="text"
+                                   className="form-control"
+                                   id="name"
+                                   name="name"
+                                   required
+                                   placeholder="Enter book name"
+                                   onChange={handleChange}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Category</label>
+                            <select name="category" className="form-control" onChange={handleChange}>
+                                {props.categories.map((category) =>
+                                    <option value={category}>{category}</option>
+                                )}
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <label>Author</label>
+                            <select name="authorId" className="form-control" onChange={handleChange}>
+                                {props.authors.map((author) =>
+                                    <option value={author.id}>{author.name} {author.surname}</option>
+                                )}
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="quantity">Available copies</label>
+                            <input type="text"
+                                   className="form-control"
+                                   id="availableCopies"
+                                   name="availableCopies"
+                                   placeholder="Enter available copies"
+                                   required
+                                   onChange={handleChange}
+                            />
+                        </div>
+                        <button id="submit" type="submit" className="btn btn-primary">Submit</button>
+                    </form>
+                </div>
             </div>
         </div>
     )
